@@ -1,0 +1,1 @@
+export const GET_DATA_ALL = "GET_DATA_ALL";
