@@ -13,29 +13,22 @@ class Modals extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
-      statusShow: 'BAN_BE',
+      visible: false,
     };
   }
   setModalVisible = () => {
     const {setModalVisible} = this.props;
     setModalVisible();
-  };x
-  // static getDerivedStateFromProps(props, state) {
-  //   const {statusShow} = state;
-  //   switch (statusShow) {
-  //     case 'active': {
-  //       break;
-  //     }
-  //     case 'completed': {
-  //       break;
-  //     }
-  //     default: {
-  //       break;
-  //     }
-  //   }
-  // }
+  };
+
+  visible = () => {
+    const {visible} = this.state;
+    this.setState({
+      visible: !visible,
+    });
+  };
   render() {
+    const {visible} = this.state;
     const {modalVisible, setModalVisible} = this.props;
     return (
       <View style={styles.centeredView}>
@@ -48,13 +41,16 @@ class Modals extends Component {
             style={styles.centeredView}
             onPressOut={this.setModalVisible}>
             <View style={styles.modalView}>
-              <TouchableOpacity style={styles.modalText}>
+              <TouchableOpacity
+                onPress={this.visible}
+                style={[styles.modalText, visible && styles.modalTextActive]}>
                 <View>
                   <Text>Bạn bè</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[styles.modalText, styles.modalTextActive]}>
+                onPress={this.visible}
+                style={[styles.modalText, !visible && styles.modalTextActive]}>
                 <View>
                   <Text>Chỉ mình tôi</Text>
                 </View>

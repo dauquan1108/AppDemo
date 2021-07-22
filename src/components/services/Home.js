@@ -5,7 +5,10 @@ import {
   ScrollView,
   Text,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
+
+import {ON_ADD_DATA} from '../../actions';
 
 // Redux
 import {connect} from 'react-redux';
@@ -25,7 +28,8 @@ class Home extends Component {
     super(props);
     this.state = {
       status: false,
-      modalVisible: true,
+      modalVisible: false,
+      value: '',
     };
   }
 
@@ -40,10 +44,22 @@ class Home extends Component {
     const {modalVisible} = this.state;
     this.setState({modalVisible: !modalVisible});
   };
+  onChangeInput = e => {
+    this.setState({
+      value: e,
+    });
+  };
+  onClick = () => {
+    const {value} = this.state;
+    // console.log({value});
+    // addData(value);
+
+    // this.setState({value: ''});
+  };
 
   render() {
     const {navigation, data} = this.props;
-    const {status, modalVisible} = this.state;
+    const {status, modalVisible, value} = this.state;
     const ThemeColor = status ? ThemeLight.color : ThemeDark.color;
     const test = ThemeDark.color;
     return (
@@ -53,7 +69,7 @@ class Home extends Component {
           <Header />
           <View>
             {data.map(item => {
-              return <Test key={item.id} item={item} />;
+              return <Test key={item.id} item={item.names} />;
             })}
           </View>
           <View style={{backgroundColor: 'red', width: 50, height: 30}}>
@@ -72,6 +88,15 @@ class Home extends Component {
             modalVisible={modalVisible}
             setModalVisible={this.setModalVisible}
           />
+          <TextInput
+            type="text"
+            style={styles.Input}
+            placeholder="Vui lòng nhập..."
+            autoFocus
+            value={this.state.value}
+            onChangeText={this.onChangeInput}
+            onSubmitEditing={this.onClick}
+          />
         </ScrollView>
       </View>
     );
@@ -84,7 +109,12 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, null)(Home);
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     addData: (item) => {
+//       dispatch(ON_ADD_DATA(value));
+//     },
+// };
 
 const styles = StyleSheet.create({
   BorderButton: {
@@ -92,3 +122,5 @@ const styles = StyleSheet.create({
     borderColor: '#72707475',
   },
 });
+
+export default connect(mapStateToProps, null)(Home);
