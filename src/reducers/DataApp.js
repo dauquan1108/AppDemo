@@ -8,8 +8,6 @@ let data = [
 
 const DataApp = (state = data, action) => {
   switch (action.types) {
-    case types.GET_DATA_ALL:
-      return [...state];
     case types.ADD_DATA:
       debugger;
       console.log({action});

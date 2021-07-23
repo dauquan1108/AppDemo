@@ -6,6 +6,8 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
+  Button,
+  Alert,
 } from 'react-native';
 
 import {ON_ADD_DATA} from '../../actions';
@@ -17,6 +19,7 @@ import {connect} from 'react-redux';
 import Header from '../group/Header';
 import HeaderGroup from '../group/HeaderGroup';
 import Test from './tesst';
+import Buttons from './button';
 
 // Theme
 import ThemeLight from '../themes/ThemeLight';
@@ -30,6 +33,8 @@ class Home extends Component {
       status: false,
       modalVisible: false,
       value: '',
+      button: '' || 'button1',
+      name: '' || 'quan1',
     };
   }
 
@@ -37,6 +42,12 @@ class Home extends Component {
     const {status} = this.state;
     this.setState({
       status: !status,
+    });
+  };
+  onButton = (title, name) => {
+    this.setState({
+      button: title,
+      name: name,
     });
   };
   // Modal
@@ -51,15 +62,14 @@ class Home extends Component {
   };
   onClick = () => {
     const {value} = this.state;
-    // console.log({value});
-    // addData(value);
-
-    // this.setState({value: ''});
+    const {addData} = this.props;
+    addData(value);
+    this.setState({value: ''});
   };
 
   render() {
     const {navigation, data} = this.props;
-    const {status, modalVisible, value} = this.state;
+    const {status, modalVisible, value, button, name} = this.state;
     const ThemeColor = status ? ThemeLight.color : ThemeDark.color;
     const test = ThemeDark.color;
     return (
@@ -97,6 +107,12 @@ class Home extends Component {
             onChangeText={this.onChangeInput}
             onSubmitEditing={this.onClick}
           />
+          <View>
+            <Text>
+              {button},{name}
+            </Text>
+            <Buttons onButton={this.onButton} />
+          </View>
         </ScrollView>
       </View>
     );
@@ -109,12 +125,13 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     addData: (item) => {
-//       dispatch(ON_ADD_DATA(value));
-//     },
-// };
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    addData: value => {
+      dispatch(ON_ADD_DATA(value));
+    },
+  };
+};
 
 const styles = StyleSheet.create({
   BorderButton: {
@@ -123,4 +140,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
