@@ -7,11 +7,12 @@ let data = [
 ];
 
 const DataApp = (state = data, action) => {
-  switch (action.types) {
+  switch (action.type) {
     case types.ADD_DATA:
-      debugger;
-      console.log({action});
-      return [...state];
+      const value = action.payload;
+      let id = state.length + 1;
+      const ids = String(id);
+      return [...state, {id: ids, names: value}];
     default:
       return [...state];
   }

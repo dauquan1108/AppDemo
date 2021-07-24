@@ -21,8 +21,10 @@ class Modals extends Component {
     setModalVisible();
   };
 
-  visible = () => {
+  visible = event => {
     const {visible} = this.state;
+    const {onSelection} = this.props;
+    onSelection(event);
     this.setState({
       visible: !visible,
     });
@@ -42,22 +44,17 @@ class Modals extends Component {
             onPressOut={this.setModalVisible}>
             <View style={styles.modalView}>
               <TouchableOpacity
-                onPress={this.visible}
+                onPress={() => this.visible('Bạn bè')}
                 style={[styles.modalText, visible && styles.modalTextActive]}>
-                <View>
-                  <Text>Bạn bè</Text>
-                </View>
+                <Text>Bạn bè</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                onPress={this.visible}
+                onPress={() => this.visible('Chỉ mình tôi')}
                 style={[styles.modalText, !visible && styles.modalTextActive]}>
-                <View>
-                  <Text>Chỉ mình tôi</Text>
-                </View>
+                <Text>Chỉ mình tôi</Text>
               </TouchableOpacity>
             </View>
           </TouchableOpacity>
-          {/*</View>*/}
         </Modal>
       </View>
     );

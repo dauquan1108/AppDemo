@@ -10,7 +10,7 @@ import {
   Alert,
 } from 'react-native';
 
-import {ON_ADD_DATA} from '../../actions';
+import * as actions from '../../actions';
 
 // Redux
 import {connect} from 'react-redux';
@@ -35,6 +35,7 @@ class Home extends Component {
       value: '',
       button: '' || 'button1',
       name: '' || 'quan1',
+      selection: '' || 'Bạn bè',
     };
   }
 
@@ -67,9 +68,15 @@ class Home extends Component {
     this.setState({value: ''});
   };
 
+  onSelection = event => {
+    this.setState({
+      selection: event,
+    });
+  };
+
   render() {
     const {navigation, data} = this.props;
-    const {status, modalVisible, value, button, name} = this.state;
+    const {status, modalVisible, value, button, name, selection} = this.state;
     const ThemeColor = status ? ThemeLight.color : ThemeDark.color;
     const test = ThemeDark.color;
     return (
@@ -92,9 +99,10 @@ class Home extends Component {
             <Text style={{color: ThemeColor}}> QuanDX </Text>
           </View>
           <TouchableOpacity onPress={this.setModalVisible}>
-            <Text>Quan Modals</Text>
+            <Text>Quan Modals {selection}</Text>
           </TouchableOpacity>
           <Modals
+            onSelection={this.onSelection}
             modalVisible={modalVisible}
             setModalVisible={this.setModalVisible}
           />
@@ -128,7 +136,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     addData: value => {
-      dispatch(ON_ADD_DATA(value));
+      dispatch(actions.ON_ADD_DATA(value));
     },
   };
 };
