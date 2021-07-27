@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import * as actions from '../../actions';
+import TestHooK from './TestHooK';
 
 // Redux
 import {connect} from 'react-redux';
@@ -63,8 +64,9 @@ class Home extends Component {
   };
   onClick = () => {
     const {value} = this.state;
+    const values = value.trim();
     const {addData} = this.props;
-    addData(value);
+    addData(values);
     this.setState({value: ''});
   };
 
@@ -121,6 +123,7 @@ class Home extends Component {
             </Text>
             <Buttons onButton={this.onButton} />
           </View>
+          <TestHooK />
         </ScrollView>
       </View>
     );

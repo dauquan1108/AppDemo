@@ -5,14 +5,14 @@ import {createMaterialBottomTabNavigator} from '@react-navigation/material-botto
 import Icons from 'react-native-vector-icons/FontAwesome5';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 import IonIcon from 'react-native-vector-icons/AntDesign';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 //Component
 import Home from '../services/Home';
 import Friends from '../services/Friends';
 import Gallery from '../services/Gallery';
-import Notification from '../services/Notification';
 import Menu from '../services/Menu';
+import Notes from '../services/Notes/TodoList';
 
 //test
 import SettingsStackScreen from './SettingsStackScreen';
@@ -43,12 +43,11 @@ export default function MyTabs() {
         }}
       />
       <Tab.Screen
-        name="OverView"
+        name="Friends"
         component={Friends}
         options={{
           tabBarLabel: 'Friends',
           tabBarIcon: ({color}) => (
-            // <Image style={styles.tinyLogo} source={friends} />
             <Icons name={'user-friends'} color={color} size={20} />
           ),
         }}
@@ -59,19 +58,17 @@ export default function MyTabs() {
         options={{
           tabBarLabel: 'Gallery',
           tabBarIcon: ({color}) => (
-            // <Image style={styles.tinyLogo} source={bell} />
             <IonIcon name={'message1'} color={color} size={20} />
           ),
         }}
       />
       <Tab.Screen
-        name="Notification"
-        component={SettingsStackScreen}
+        name="Notes"
+        component={Notes}
         options={{
-          tabBarLabel: 'Notification',
+          tabBarLabel: 'Note',
           tabBarIcon: ({color}) => (
-            // <Image style={styles.tinyLogo} source={bell} />
-            <Icon name={'bell'} color={color} size={20} />
+            <IconSimpleLineIcons name={'note'} color={color} size={20} />
           ),
         }}
       />
@@ -81,7 +78,6 @@ export default function MyTabs() {
         options={{
           tabBarLabel: 'Menu',
           tabBarIcon: ({color}) => (
-            // <Image style={styles.tinyLogo} source={menu} />
             <IonIcons name={'md-menu-outline'} color={color} size={25} />
           ),
         }}

@@ -14,7 +14,7 @@ class SettingsStackScreen extends Component {
           headerShown: false,
         }}>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="OverView" component={Friends} />
+        <Stack.Screen name="Friends" component={Friends} />
       </Stack.Navigator>
     );
   }
