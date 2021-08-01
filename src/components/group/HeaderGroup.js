@@ -16,7 +16,7 @@ class HeaderGroup extends Component {
       <View style={styles.HeaderGroup}>
         <View style={styles.StatusBar}>
           <StatusBar
-            backgroundColor="#b3e6ff"
+            backgroundColor="#ffffff"
             barStyle="dark-content"
             hidden={false}
             translucent={true}

@@ -11,17 +11,11 @@ import IconSimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import Home from '../services/Home';
 import Friends from '../services/Friends';
 import Gallery from '../services/Gallery';
-import Menu from '../services/Menu';
+import Menu from '../services/menus/Menu';
 import Notes from '../services/Notes/TodoList';
-
-//test
-import SettingsStackScreen from './SettingsStackScreen';
-
 import TabNavigationBlog from '../../components/group/blog/TabNavigationBlog';
 
-//End Component
 import home from '../../assets/home.png';
-import bell from '../../assets/bell.png';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -74,7 +68,7 @@ export default function MyTabs() {
       />
       <Tab.Screen
         name="Menu"
-        component={TabNavigationBlog}
+        component={Menu}
         options={{
           tabBarLabel: 'Menu',
           tabBarIcon: ({color}) => (

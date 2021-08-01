@@ -23,9 +23,10 @@ import Test from './tesst';
 import Buttons from './button';
 
 // Theme
-import ThemeLight from '../themes/ThemeLight';
-import ThemeDark from '../themes/ThemeDark';
+import ThemeLight from '../themes/light';
+import ThemeDark from '../themes/dark';
 import Modals from './Modal';
+import StatusOff from '../../reducers/StatusOff';
 
 class Home extends Component {
   constructor(props) {
@@ -88,7 +89,7 @@ class Home extends Component {
           <Header />
           <View>
             {data.map(item => {
-              return <Test key={item.id} item={item.names} />;
+              return <Test key={item.id} item={item.names}  />;
             })}
           </View>
           <View style={{backgroundColor: 'red', width: 50, height: 30}}>
@@ -133,11 +134,15 @@ class Home extends Component {
 const mapStateToProps = state => {
   return {
     data: state.DataApp,
+    statusOn: state.StatusOff,
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
+    checkDone: () => {
+      dispatch(actions.ON_CHECK_DONE());
+    },
     addData: value => {
       dispatch(actions.ON_ADD_DATA(value));
     },

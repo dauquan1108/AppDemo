@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, ScrollView, StyleSheet} from 'react-native';
 
+// redux
 import {connect} from 'react-redux';
+
+// action
 import * as actions from '../../../actions';
+
+// icon
+import Icons from 'react-native-vector-icons/FontAwesome5';
+
+// theme
+import themeDark from '../../themes/dark';
+import themeLight from '../../themes/light';
 
 class Header extends Component {
   constructor(props) {
@@ -26,11 +36,14 @@ class Header extends Component {
   };
   render() {
     const {value} = this.state;
+    const {status} = this.props;
+    const themes = status ? themeLight : themeDark;
     return (
-      <View style={styles.Header}>
+      <View style={[styles.Header, {backgroundColor: themes.theme.input}]}>
+        <Icons name="pencil-alt" color={themes.theme.backgroundBT} size={20} />
         <TextInput
           type="text"
-          style={styles.Input}
+          style={{fontSize: 18}}
           placeholder="Vui lòng nhập..."
           autoFocus
           value={value}
@@ -44,25 +57,17 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   Header: {
-    borderWidth: 1,
-    borderColor: '#FFFFFF',
-    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    alignItems: 'center',
     borderRadius: 10,
-    // shadow
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-
-    elevation: 3,
-  },
-  Input: {
-    paddingLeft: 15,
+    padding: 10,
   },
 });
+const mapStateToProps = state => {
+  return {
+    status: state.StatusOff,
+  };
+};
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
@@ -72,4 +77,4 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -1,18 +1,34 @@
 import * as types from '../constants/ActionType';
+import uuid from 'react-native-uuid';
 
-let data = [
-  {id: 1, names: 'quan1'},
-  {id: 2, names: 'quan2'},
-  {id: 3, names: 'quan3'},
-];
+let data = [];
 
 const DataApp = (state = data, action) => {
   switch (action.type) {
     case types.ADD_DATA:
       const value = action.payload;
-      let id = state.length + 1;
-      const ids = String(id);
-      return [...state, {id: ids, names: value}];
+      return [{id: uuid.v4(), names: value, status: false}, ...state];
+    case types.UPDATE:
+      const idUpdate = action.payload.id;
+      const valueUpdate = action.payload.value;
+      state.forEach(item => {
+        if (item.id === idUpdate) {
+          item.names = valueUpdate;
+        }
+      });
+      return [...state];
+    case types.UPDATE_STATUS:
+      const idStatus = action.payload.id;
+      state.forEach(item => {
+        if (item.id === idStatus) {
+          item.status = !item.status;
+        }
+      });
+      return [...state];
+    case types.DELETE_ITEM:
+      const id = action.payload;
+      const deleteItem = state.filter(todo => todo.id !== id);
+      return deleteItem;
     default:
       return [...state];
   }

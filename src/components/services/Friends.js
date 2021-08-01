@@ -19,17 +19,17 @@ class Friends extends Component {
     return (
       <ScrollView>
         <View style={styles.HeaderGroup}>
-          <HeaderGroup
-            navigation={navigation}
-            title="Chỉnh sửa thông tin cá nhân"
-          />
+          {/*<HeaderGroup*/}
+          {/*  navigation={navigation}*/}
+          {/*  title="Chỉnh sửa thông tin cá nhân"*/}
+          {/*/>*/}
 
           <View style={styles.Content}>
             {/*<View style={styles.Border}/>*/}
             <View style={styles.Avatar}>
               <View style={styles.AvatarText}>
                 <Text style={{fontWeight: 'bold', fontSize: 20}}>
-                  Ảnh đại diện{' '}
+                  Ảnh đại diện
                 </Text>
                 <TouchableOpacity>
                   <Text>Chỉnh sửa</Text>

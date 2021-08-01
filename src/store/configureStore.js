@@ -2,12 +2,13 @@ import {createStore, combineReducers} from 'redux';
 
 // component reducers
 import DataApp from '../reducers/DataApp';
-
-// npm install --save redux-devtools-extension
-import {composeWithDevTools} from 'redux-devtools-extension';
+import StatusOff from '../reducers/StatusOff';
+import BlogDate from '../reducers/BlogDate';
 
 const rootReducer = combineReducers({
   DataApp,
+  StatusOff,
+  BlogDate,
 });
 const configureStore = () => {
   return createStore(rootReducer);
