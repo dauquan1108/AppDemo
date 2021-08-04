@@ -71,8 +71,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   HeaderContentIcon: {
+    marginLeft: 5,
     width: 30,
+    height: 30,
+    borderRadius: 30 / 2,
     alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 const mapStateToProps = state => {

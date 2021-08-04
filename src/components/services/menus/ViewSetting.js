@@ -61,7 +61,6 @@ class ViewSetting extends Component {
     );
   }
 }
-
 const styles = StyleSheet.create({
   ViewSetting: {
     marginTop: 10,

@@ -3,7 +3,16 @@ import avatar from '../assets/avatar.jpg';
 import background from '../assets/nen.jpg';
 
 let blog = [
-  {id: 1, names: 'Đậu Xuân Quân', avatar: avatar, background: background},
+  {
+    id: 1,
+    names: 'Đậu Xuân Quân',
+    avatar: avatar,
+    background: background,
+    phone: [
+      {id: 1, phone: '0387091106'},
+      {id: 2, phone: '0973433709'},
+    ],
+  },
 ];
 
 const BlogDate = (state = blog, action) => {

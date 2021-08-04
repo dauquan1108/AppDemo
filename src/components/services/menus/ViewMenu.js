@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, Image, Linking} from 'react-native';
 
 // redux
 import {connect} from 'react-redux';
@@ -8,13 +8,17 @@ import {connect} from 'react-redux';
 import themeDark from '../../themes/dark';
 import themeLight from '../../themes/light';
 
+// component
+import PhonesMenu from './PhonesMenu';
+
 import avatarDefault from '../../../assets/avatar2.png';
 import imageBackgroundDefault from '../../../assets/nen2.jpg';
 
 class ViewMenu extends Component {
   render() {
-    const {item, status} = this.props;
+    const {item, status, phone} = this.props;
     const themes = status ? themeLight : themeDark;
+    const phones = phone.phone1;
     return (
       <View style={styles.viewMenu}>
         <Image
@@ -36,6 +40,9 @@ class ViewMenu extends Component {
         <Text style={[styles.title, {color: themes.theme.textColor}]}>
           {item.names}
         </Text>
+        <View>
+          <PhonesMenu phone={phones} />
+        </View>
       </View>
     );
   }
@@ -68,6 +75,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
     bottom: -120,
+  },
+  Phone: {
+    position: 'absolute',
+    fontWeight: 'bold',
+    fontSize: 15,
+    bottom: -150,
   },
 });
 const mapStateToProps = state => {

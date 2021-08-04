@@ -16,15 +16,16 @@ class Menu extends Component {
   render() {
     const {blog, status, navigation} = this.props;
     const themes = status ? ThemeLight : themeDark;
+    console.log({blog});
     return (
       <View style={[styles.Menu, {backgroundColor: themes.theme.background}]}>
         <HeaderShared title="Menu" navigation={navigation} />
         <View style={styles.MenuContent}>
           {blog.map(item => {
-            return <ViewMenu key={item.id} item={item} />;
+            return <ViewMenu key={item.id} item={item} phone={item.phone} />;
           })}
         </View>
-        <ViewSetting phoneNumber="0387091106" />
+        <ViewSetting />
       </View>
     );
   }
